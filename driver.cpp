@@ -141,21 +141,27 @@ int main() {
     cout << "Final Length via lcs_re: " << len_rec_test << endl << endl;
 
     //time testing part 2 functions   
-    cout << "Time testing function finding LCS length via iteration (left number = length of string/problem size): " << endl;
-    int start_s, stop_s;
-    start_s = clock();
-    for (int i = 1; i <= 800; i++){
-        lcs_it_test(X, Y, i, i);
-        stop_s = clock();
-        clog << i << ":\t" << (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000 << endl;
+    cout << "Would you like to test runtime? The program will call LCS length via iteration and LCS length via recursion at increasing problem sizes. Type '1' for yes, '2' for no." << endl;
+    int will_test;
+    cin >> will_test;
+    if (will_test == 1) {
+        cout << "Time testing function finding LCS length via iteration (left number = length of string/problem size): " << endl;
+        int start_s, stop_s;
+        start_s = clock();
+        for (int i = 1; i <= 800; i++){
+            lcs_it_test(X, Y, i, i);
+            stop_s = clock();
+            clog << i << ":\t" << (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000 << endl;
+        }
+        cout << "Time testing function finding LCS length via recursion (left number = length of string/problem size): " << endl;
+        start_s = clock();
+        for (int i = 1; i <= 20; i++){
+            lcs_re(X, Y, i, i);
+            stop_s = clock();
+            clog << i << ":\t" << (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000 << endl;
+        }    
     }
-    cout << "Time testing function finding LCS length via recursion (left number = length of string/problem size): " << endl;
-    start_s = clock();
-    for (int i = 1; i <= 20; i++){
-        lcs_re(X, Y, i, i);
-        stop_s = clock();
-        clog << i << ":\t" << (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000 << endl;
-    }
+
 
 
     return 0;
